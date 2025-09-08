@@ -1,1 +1,47 @@
+# Rails secrets
 /config/master.key
+/config/credentials/*.key
+
+# Sensitive env files
+.env
+.env.*
+
+# Local databases
+/db/*.sqlite3
+/db/*.sqlite3-*
+/db/*.sqlite3-journal
+
+# Logs
+/log/*
+!/log/.keep
+
+# Temp files, caches, pids
+/tmp/*
+!/tmp/.keep
+
+# Active Storage (uploaded blobs)
+/storage/*
+!/storage/.keep
+
+# Coverage reports
+/coverage/
+
+# Bundler
+/vendor/bundle
+
+# Node
+/node_modules
+/yarn-error.log
+
+# System
+*.swp
+*.swo
+*.bak
+*.tmp
+*.DS_Store
+*.idea/
+.vscode/
+
+# Byebug/Capybara etc.
+.byebug_history
+capybara-*.html
