@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_08_151356) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_08_154541) do
   create_table "accommodations", force: :cascade do |t|
     t.string "name"
     t.string "kind"
@@ -98,7 +98,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_08_151356) do
     t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.check_constraint "role IN ('parent','teacher','admin')", name: "users_role_check"
   end
 

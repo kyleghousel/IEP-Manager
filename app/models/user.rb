@@ -1,4 +1,8 @@
 class User < ApplicationRecord
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
   has_many :progress_entries, dependent: :destroy
   has_many :meetings, foreign_key: :organizer_id, dependent: :destroy
 
@@ -16,5 +20,13 @@ class User < ApplicationRecord
 
   def admin?
     role == "admin"
+  end
+
+private
+
+  def restrict_admin_signup
+    return unless role == "admin" && new_record?
+
+    errors.add(:role, "cannot be admin at signup")
   end
 end
