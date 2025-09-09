@@ -1,0 +1,28 @@
+<%= form_with model: @student do |form| %>
+  <div>
+    <%= form.label :first_name %>
+    <%= form.text_field :first_name %>
+  </div>
+
+  <div>
+    <%= form.label :last_name %>
+    <%= form.text_field :last_name %>
+  </div>
+
+  <div>
+    <%= form.label :dob %>
+    <%= form.date_field :dob %>
+  </div>
+
+  <div>
+    <%= form.label :diagnosis %>
+    <%= form.text_field :diagnosis %>
+  </div>
+
+  <div>
+    <%= form.label :grade_level %>
+    <%= form.text_field :grade_level %>
+  </div>
+
+  <%= form.submit %>
+<% end %>

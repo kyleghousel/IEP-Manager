@@ -1,0 +1,10 @@
+<h1><%= "#{@student.first_name} #{@student.last_name} Info" %></h1>
+<p>Date of Birth: <%= @student.dob %></p>
+<p>SPED Diagnosis: <%= @student.diagnosis %></p>
+<p>Grade Level: <%= @student.grade_level %></p>
+<% if policy(@student).update? %>
+  <%= link_to "Edit #{@student.first_name}", edit_student_path(@student) %>
+<% end %>
+<% if policy(@student).destroy? %>
+  <%= button_to "Delete #{@student.first_name}", student_path(@student), method: :delete, data: { turbo_confirm: "Are you sure?" } %>
+<% end %>
