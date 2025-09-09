@@ -1,16 +1,18 @@
 <h1>Template for <%= @goal.name %></h1>
-<h3>Objectives:</h3>
-<ul>
-  <li><%= @goal.objectives %></li>
-</ul>
-<p>Category: <%= @goal.category %></p>
-<p>Status: <%= @goal.active %></p>
-<% if policy(@goals).index? %>
-  <%= link_to "View All Goals", goals_path(@goals) %>
-<% end %>
+
+<h3>Objectives</h3>
+<p><%= simple_format(@goal.objectives) %></p>
+
+<p>Category: <%= @goal.category.presence || "—" %></p>
+<p>Status: <%= @goal.active ? "Active" : "Inactive" %></p>
+
+<%= link_to "View All Goals", goals_path %>
+
 <% if policy(@goal).update? %>
   <%= link_to "Edit #{@goal.name}", edit_goal_path(@goal) %>
 <% end %>
+
 <% if policy(@goal).destroy? %>
-  <%= button_to "Delete #{@goal.name}", goal_path(@goal), method: :delete, data: { confirm: "Are you sure?" } %>
+  <%= button_to "Delete #{@goal.name}", goal_path(@goal),
+        method: :delete, data: { confirm: "Are you sure?" } %>
 <% end %>

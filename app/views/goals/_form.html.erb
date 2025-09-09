@@ -1,23 +1,25 @@
-<%= form_with model: @goal, local: true do |form| %>
+<%= form_with model: @goal, data: { turbo: false } do |f| %>
+  <%= render "shared/errors", resource: @goal %>
+
   <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
   </div>
 
   <div>
-    <%= form.label :objectives %>
-    <%= form.text_field :objectives %>
+    <%= f.label :objectives %>
+    <%= f.text_area :objectives, rows: 4 %>
   </div>
 
   <div>
-    <%= form.label :category %>
-    <%= form.text_field :category %>
+    <%= f.label :category %>
+    <%= f.text_field :category %>
   </div>
 
   <div>
-    <%= form.label :active %>
-    <%= form.check_box :active %>
+    <%= f.label :active %>
+    <%= f.check_box :active %>
   </div>
 
-  <%= form.submit %>
+  <%= f.submit %>
 <% end %>
