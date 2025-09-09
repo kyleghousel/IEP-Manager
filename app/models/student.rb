@@ -6,4 +6,6 @@ class Student < ApplicationRecord
   has_many :accommodations, through: :student_accommodations
 
   has_many :meetings, dependent: :destroy
+
+  validates :first_name, :last_name, :dob, :diagnosis, presence: true
 end

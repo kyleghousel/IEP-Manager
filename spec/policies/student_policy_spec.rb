@@ -1,5 +1,10 @@
 require 'rails_helper'
 
+# •	admin: allow all
+# •	teacher: allow read/write (per your rule), deny destroy if that’s your rule
+# •	parent: read-only
+# •	scope behavior per role
+
 RSpec.describe StudentPolicy, type: :policy do
   let(:user) { User.new }
 
