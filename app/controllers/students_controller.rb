@@ -7,6 +7,7 @@ class StudentsController < ApplicationController
 
   def show
     @student = Student.find(params[:id])
+    @students = policy_scope(Student)
     authorize @student
   end
 
@@ -42,7 +43,7 @@ class StudentsController < ApplicationController
     end
   end
 
-  private
+private
 
   def student_params
     params.require(:student).permit(:first_name, :last_name, :dob, :diagnosis, :grade_level)
