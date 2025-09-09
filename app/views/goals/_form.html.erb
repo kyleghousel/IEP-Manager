@@ -1,0 +1,25 @@
+<%= form_with model: @goal, data: { turbo: false } do |f| %>
+  <%= render "shared/errors", resource: @goal %>
+
+  <div>
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div>
+    <%= f.label :objectives %>
+    <%= f.text_area :objectives, rows: 4 %>
+  </div>
+
+  <div>
+    <%= f.label :category %>
+    <%= f.text_field :category %>
+  </div>
+
+  <div>
+    <%= f.label :active %>
+    <%= f.check_box :active %>
+  </div>
+
+  <%= f.submit %>
+<% end %>

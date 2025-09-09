@@ -1,28 +1,30 @@
-<%= form_with model: @student do |form| %>
+<%= form_with model: @student, data: { turbo: false } do |f| %>
+  <%= render "shared/errors", resource: @goal %>
+
   <div>
-    <%= form.label :first_name %>
-    <%= form.text_field :first_name %>
+    <%= f.label :first_name %>
+    <%= f.text_field :first_name %>
   </div>
 
   <div>
-    <%= form.label :last_name %>
-    <%= form.text_field :last_name %>
+    <%= f.label :last_name %>
+    <%= f.text_field :last_name %>
   </div>
 
   <div>
-    <%= form.label :dob %>
-    <%= form.date_field :dob %>
+    <%= f.label :dob %>
+    <%= f.date_field :dob %>
   </div>
 
   <div>
-    <%= form.label :diagnosis %>
-    <%= form.text_field :diagnosis %>
+    <%= f.label :diagnosis %>
+    <%= f.text_field :diagnosis %>
   </div>
 
   <div>
-    <%= form.label :grade_level %>
-    <%= form.text_field :grade_level %>
+    <%= f.label :grade_level %>
+    <%= f.text_field :grade_level %>
   </div>
 
-  <%= form.submit %>
+  <%= f.submit %>
 <% end %>
