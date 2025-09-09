@@ -24,7 +24,7 @@ class GoalPolicy < ApplicationPolicy
       if user.admin?
         scope.all
       elsif user.teacher?
-        scope.all
+        scope.active_only
       elsif user.parent?
         scope.none # add filter to just their child
       else
