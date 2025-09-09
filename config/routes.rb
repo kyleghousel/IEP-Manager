@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
   devise_for :users
+
+  resources :progress_entry, :goal, :student, :accommodation
+
   authenticated :user do
-    root to: "students#index", as: :authenticated_root   # pick a real page you have
+    root to: "students#index", as: :authenticated_root
   end
 
   devise_scope :user do
