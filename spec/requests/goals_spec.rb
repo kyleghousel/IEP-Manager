@@ -61,4 +61,45 @@ RSpec.describe "Goals", type: :request do
       expect(response.body).not_to include("Any")
     end
   end
+
+  describe "POST /goals" do
+  it "creates a goal as an admin" do
+    admin = create(:user, role: "admin")
+    login_as(admin, scope: :user)
+
+    expect {
+      post goals_path, params: {
+        goal: {
+          name: "Identify birds",
+          objectives: "Identify 20 birds in one minute with 80% accuracy",
+          category: "Science",
+          active: true
+        }
+      }
+    }.to change(Goal, :count).by(1)
+
+    expect(response).to redirect_to(goal_path(Goal.last))
+    follow_redirect!
+
+    expect(response.body).to include("Identify birds")
+  end
+  it "prevents goal creation as a parent" do
+    parent = create(:user, role: "parent")
+    login_as(parent, scope: :user)
+
+    expect {
+      post goals_path, params: {
+        goal: {
+          name: "Identify birds",
+          objectives: "Identify 20 birds in one minute with 80% accuracy",
+          category: "Science",
+          active: true
+        }
+      }
+    }.not_to change(Goal, :count)
+
+    expect(response).to redirect_to(root_path)
+    expect(flash[:alert]).to eq("Not authorized")
+  end
+end
 end

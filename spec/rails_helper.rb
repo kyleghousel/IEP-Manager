@@ -34,6 +34,7 @@ begin
 rescue ActiveRecord::PendingMigrationError => e
   abort e.to_s.strip
 end
+Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |f| require f }
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_paths = [
@@ -46,7 +47,6 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
 
   config.include FactoryBot::Syntax::Methods
-
   # You can uncomment this line to turn off ActiveRecord support entirely.
   # config.use_active_record = false
 
