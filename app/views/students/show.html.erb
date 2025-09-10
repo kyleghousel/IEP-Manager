@@ -11,8 +11,21 @@
     </li>
   <% end %>
 </ul>
+<ul>
+  <h4><%= "#{@student.first_name}'s Accommodations" %></h4>
+  <% @student.student_accommodations.each do |sa| %>
+    <li>
+      <%= link_to sa.accommodation.name, [@student, sa] %>
+      <%= button_to "❌", student_student_accommodation_path(@student, sa), method: :delete, data: { confirm: "Are you sure?" }%>
+    </li>
+  <% end %>
+</ul>
 <% if policy(StudentGoal).new? %>
-  <%= link_to "Create New Goal", new_student_student_goal_path(@student) %>
+  <%= link_to "Add Goal", new_student_student_goal_path(@student) %>
+<% end %>
+<br>
+<% if policy(StudentAccommodation).new? %>
+  <%= link_to "Add Accommodation", new_student_student_accommodation_path(@student) %>
 <% end %>
 <br>
 <% if policy(@students).index? %>
