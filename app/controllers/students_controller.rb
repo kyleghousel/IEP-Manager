@@ -43,6 +43,13 @@ class StudentsController < ApplicationController
     end
   end
 
+  def destroy
+    @student = Student.find(params[:student_id])
+    authorize @student
+    @student.destroy
+    redirect_to @students, notice: "Removed student"
+  end
+
 private
 
   def student_params
