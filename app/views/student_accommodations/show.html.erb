@@ -1,0 +1,8 @@
+<h1><%= @student_accommodation.accommodation.name %> accommodation for <%= @student_accommodation.student.first_name %></h1>
+<h3><%= @student_accommodation.accommodation.category %></h3>
+
+<p>Start Date: <%= @student_accommodation.start_on.strftime("%m/%d/%Y") %></p>
+<p>End Date: <%= @student_accommodation.end_on.strftime("%m/%d/%Y") %></p>
+<p>Notes:: <%= @student_accommodation.notes %></p>
+<br>
+<%= link_to "Back to #{@student_accommodation.student.first_name}", @student_accommodation.student %>

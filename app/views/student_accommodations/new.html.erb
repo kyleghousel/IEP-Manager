@@ -1,0 +1,29 @@
+<h1>Add Accommodation For <%= @student.first_name %></h1>
+
+<%= form_with model: [@student, @student_accommodation], local: true do |f| %>
+  <div>
+    <%= f.label :accommodation_id, "Select Accommodation" %>
+    <%= f.collection_select :accommodation_id, Accommodation.all, :id, :name %>
+  </div>
+
+  <div>
+    <%= f.label :start_on %>
+    <%= f.date_field :start_on %>
+  </div>
+
+  <div>
+    <%= f.label :end_on %>
+    <%= f.date_field :end_on %>
+  </div>
+
+  <div>
+    <%= f.label :notes %>
+    <%= f.date_field :notes %>
+  </div>
+
+  <div>
+    <%= f.submit "Assign Accommodation" %>
+  </div>
+<% end %>
+
+<%= render "shared/errors", resource: @student_accommodation %>
