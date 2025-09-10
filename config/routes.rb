@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   devise_for :users
+  root to: "students#index"
 
-  resources :progress_entries, :goals, :students, :accommodations
+  resources :goals
+  resources :students do
+    resources :student_goals, only: [:new, :create, :show, :destroy]
+  end
 
   authenticated :user do
     root to: "students#index", as: :authenticated_root
