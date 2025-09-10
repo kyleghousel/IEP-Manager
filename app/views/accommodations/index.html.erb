@@ -1,0 +1,6 @@
+<h1>Student Accommodations</h1>
+<% @accommodations.each do |a| %>
+  <div>
+    <%= link_to a.name, a %>
+  </div>
+<% end %>

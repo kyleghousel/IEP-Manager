@@ -1,11 +1,14 @@
 <h1><%= "#{@student.first_name} #{@student.last_name} Info" %></h1>
-<p>Date of Birth: <%= @student.dob %></p>
+<p>Date of Birth: <%= @student.dob.strftime("%m/%d/%Y") %></p>
 <p>SPED Diagnosis: <%= @student.diagnosis %></p>
 <p>Grade Level: <%= @student.grade_level %></p>
 <ul>
   <h4><%= "#{@student.first_name}'s Goals" %></h4>
   <% @student.student_goals.each do |sg| %>
-    <li><%= link_to sg.goal.name, [@student, sg] %></li>
+    <li>
+      <%= link_to sg.goal.name, [@student, sg] %>
+      <%= button_to "❌", student_student_goal_path(@student, sg), method: :delete, data: { confirm: "Are you sure?" }%>
+    </li>
   <% end %>
 </ul>
 <% if policy(StudentGoal).new? %>
@@ -20,6 +23,6 @@
   <%= button_to "Delete #{@student.first_name}", student_path(@student), method: :delete, data: { confirm: "Are you sure?" } %>
 <% end %>
 <br>
-<% if policy(@student).index? %>
-  <%= button_to "View all Students", students_path(@students) %>
+<% if policy(@students).index? %>
+  <%= link_to "All Students", students_path(@students) %>
 <% end %>

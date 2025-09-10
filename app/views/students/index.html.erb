@@ -4,3 +4,7 @@
     <%= link_to "#{student.first_name} #{student.last_name}", student %></p>
 </div>
 <% end %>
+<br>
+<% if policy(Student).new? %>
+  <%= link_to "Add Student", new_student_path(@student) %>
+<% end %>

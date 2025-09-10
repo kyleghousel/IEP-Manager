@@ -1,0 +1,17 @@
+<h1>Student Accommodation for <%= @accommodation.name.titleize %></h1>
+
+<p>Type: <%= @accommodation.accommodation_type %></p>
+
+<h4>Details</h4>
+<p><%= simple_format(@accommodation.details) %></p>
+
+<%= link_to "View All Accomodations", accommodations_path %>
+
+<% if policy(@accommodation).update? %>
+  <%= link_to "Edit #{@accommodation.name}", edit_accommodation_path(@accommodation) %>
+<% end %>
+
+<% if policy(@accommodation).destroy? %>
+  <%= button_to "Delete #{@accommodation.name}", accommodation_path(@accommodation),
+        method: :delete, data: { confirm: "Are you sure?" } %>
+<% end %>
