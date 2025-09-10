@@ -1,0 +1,39 @@
+<h1>Create New Goal For <%= @student.first_name %></h1>
+
+<%= form_with model: [@student, @student_goal], local: true do |f| %>
+  <div>
+    <%= f.label :goal_id, "Select Goal Template" %>
+    <%= f.collection_select :goal_id, Goal.active_only, :id, :name %>
+  </div>
+
+  <div>
+    <%= f.label :start_on %>
+    <%= f.date_field :start_on %>
+  </div>
+
+  <div>
+    <%= f.label :target_date %>
+    <%= f.date_field :target_date %>
+  </div>
+
+  <div>
+    <%= f.label :baseline %>
+    <%= f.date_field :baseline %>
+  </div>
+
+  <div>
+    <%= f.label :status %>
+    <%= f.select :status, ["planned", "in_progress", "mastered"] %>
+  </div>
+
+  <div>
+    <%= f.label :mastery_percent %>
+    <%= f.number_field :mastery_percent %>
+  </div>
+
+  <div>
+    <%= f.submit "Assign Goal" %>
+  </div>
+<% end %>
+
+<%= render "shared/errors", resource: @student_goal %>

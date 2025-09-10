@@ -1,0 +1,10 @@
+<h1><%= @student_goal.goal.name %> Goal for <%= @student_goal.student.first_name %></h1>
+<h3><%= @student_goal.goal.category %></h3>
+<p>
+  SWBAT: <%= @student_goal.goal.objectives.sub(/[[:punct:]]+\z/, "") %>
+  at <%= @student_goal.mastery_percent %>% accuracy by <%= @student_goal.target_date.strftime("%m/%d/%Y") %>.
+</p>
+<p>Start Date: <%= @student_goal.start_on.strftime("%m/%d/%Y") %></p>
+<p>Target Date: <%= @student_goal.target_date.strftime("%m/%d/%Y") %></p>
+<p>Baseline: <%= @student_goal.baseline %></p>
+<p>Status: <%= @student_goal.status.sub("_", " ").capitalize %></p>
