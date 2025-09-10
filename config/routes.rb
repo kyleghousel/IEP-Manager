@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   resources :goals, :accommodations
   resources :students do
-    resources :student_goals, only: [:new, :create, :show, :destroy]
+    resources :student_goals, only: [:new, :create, :show, :destroy] do
+      resources :progress_entries, only: [:create, :destroy]
+    end
     resources :student_accommodations, only: [:new, :create, :show, :destroy]
   end
 
