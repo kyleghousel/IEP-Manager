@@ -1,4 +1,4 @@
-class GoalPolicy < ApplicationPolicy
+class AccommodationPolicy < ApplicationPolicy
   def index?
     user.admin? || user.teacher?
   end
@@ -24,7 +24,7 @@ class GoalPolicy < ApplicationPolicy
       if user.admin?
         scope.all
       elsif user.teacher?
-        scope.active_only
+        scope.all
       elsif user.parent?
         scope.none
       else
