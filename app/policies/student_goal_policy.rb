@@ -16,7 +16,7 @@ class StudentGoalPolicy < ApplicationPolicy
   end
 
   def destroy?
-    user.admin?
+    user.admin? || user.teacher?
   end
 
   class Scope < ApplicationPolicy::Scope

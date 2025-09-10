@@ -1,13 +1,23 @@
 puts "Seeding users..."
-admin = User.find_or_create_by!(email: "admin@example.com") do |u|
-  u.first_name = "Ada"
-  u.last_name = "Admin"
-  u.role = "admin"
+admin = User.find_or_initialize_by(email: "admin@example.com")
+admin.assign_attributes(first_name: "Ada", last_name: "Admin", role: "admin",
+                        password: "changeme!", password_confirmation: "changeme!")
+admin.save!
+
+teacher = User.find_or_initialize_by(email: "teacher@example.com")
+teacher.assign_attributes(first_name: "Tess", last_name: "Teacher", role: "teacher",
+                          password: "changeme!", password_confirmation: "changeme!")
+teacher.save!
+
+puts "Seeding accommodations..."
+a_pres = Accommodation.find_or_create_by!(name: "Chunked Text") do |a|
+  a.accommodation_type = :presentation
+  a.details = "Shorter passages, bolded keywords."
 end
-teacher = User.find_or_create_by!(email: "teacher@example.com") do |u|
-  u.first_name = "Tess"
-  u.last_name = "Teacher"
-  u.role = "teacher"
+
+a_set = Accommodation.find_or_create_by!(name: "Preferential Seat") do |a|
+  a.accommodation_type = :setting
+  a.details = "Front-left, minimal distractions."
 end
 
 puts "Seeding students..."
@@ -37,16 +47,6 @@ g_write = Goal.find_or_create_by!(name: "Written Expression") do |g|
   g.objectives = "Write 3-paragraph essay with rubric ≥3."
   g.category = "ELA"
   g.active = true
-end
-
-puts "Seeding accommodations..."
-a_pres = Accommodation.find_or_create_by!(name: "Chunked Text") do |a|
-  a.kind = "presentation"
-  a.details = "Shorter passages, bolded keywords."
-end
-a_set = Accommodation.find_or_create_by!(name: "Preferential Seat") do |a|
-  a.kind = "setting"
-  a.details = "Front-left, minimal distractions."
 end
 
 puts "Seeding goals and assigning to students..."

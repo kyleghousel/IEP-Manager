@@ -24,9 +24,9 @@ class StudentPolicy < ApplicationPolicy
       if user.admin?
         scope.all
       elsif user.teacher?
-        scope.all # later: maybe only their assigned students
+        scope.all
       elsif user.parent?
-        scope.none # or filter to just their child
+        scope.none
       else
         scope.none
       end
