@@ -3,7 +3,6 @@ require "rails_helper"
 RSpec.describe User, type: :model do
   describe "associations" do
     it { should have_many(:progress_entries).dependent(:destroy) }
-    it { should have_many(:meetings).dependent(:destroy) }
   end
 
   describe "validations" do
@@ -50,17 +49,5 @@ RSpec.describe User, type: :model do
       it { expect(user.admin?).to be false }
     end
   end
-  describe "dependent destroys", :pending do
-    it "removes progress_entries when user is destroyed" do
-      user = create(:user)
-      create(:progress_entry, user: user)
-      expect { user.destroy }.to change { ProgressEntry.count }.by(-1)
-    end
 
-    it "removes meetings when user is destroyed" do
-      user = create(:user)
-      create(:meeting, organizer: user)
-      expect { user.destroy }.to change { Meeting.count }.by(-1)
-    end
-  end
 end

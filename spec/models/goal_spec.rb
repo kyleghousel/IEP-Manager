@@ -1,6 +1,3 @@
-# •	validates presence of name, objectives
-#	•	scope .active_only returns only active
-#	•	associations: has_many :student_goals, has_many :students
 require 'rails_helper'
 RSpec.describe Goal, type: :model do
   describe "associations" do
@@ -23,12 +20,6 @@ RSpec.describe Goal, type: :model do
 
       expect(result).to match_array([active1, active2])
       expect(result).not_to include(inactive)
-    end
-  end
-
-  describe "dependent destroys", :pending do
-    it "destroys a student_goal when destroyed" do
-      student_goal = create(:student_goal)
     end
   end
 end

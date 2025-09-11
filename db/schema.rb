@@ -10,13 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_11_015549) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_11_142720) do
   create_table "accommodations", force: :cascade do |t|
-    t.string "name"
+    t.string "name", null: false
     t.text "details"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "accommodation_type", default: 0, null: false
+    t.check_constraint "length(details) >= 20", name: "details_min_length_check"
   end
 
   create_table "goals", force: :cascade do |t|
