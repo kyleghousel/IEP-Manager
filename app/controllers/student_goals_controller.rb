@@ -42,8 +42,7 @@ private
       :baseline,
       :target_value,
       :status,
-      :mastery_percent,
-      progress_entries_attributes: %i[id recorded_on note evidence_url evidence_url score_numeric]
+      :mastery_percent
     )
   end
 end
