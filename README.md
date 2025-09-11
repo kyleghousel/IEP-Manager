@@ -4,6 +4,8 @@ This is a Rails 8 application for tracking Individualized Education Program (IEP
 
 In this app, teachers can manage students, assign learning goals, record progress, and document accommodations, while parents and administrators also have role-based access to view or manage records.
 
+![IEP Manager demo](app/assets/images/demo.gif)
+
 ⸻
 
 ## Features Implemented

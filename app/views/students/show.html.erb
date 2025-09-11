@@ -1,41 +1,104 @@
-<h1><%= "#{@student.first_name} #{@student.last_name} Info" %></h1>
-<p>Date of Birth: <%= @student.dob.strftime("%m/%d/%Y") %></p>
-<p>SPED Diagnosis: <%= @student.diagnosis %></p>
-<p>Grade Level: <%= @student.grade_level %></p>
-<ul>
-  <h4><%= "#{@student.first_name}'s Goals" %></h4>
-  <% @student.student_goals.each do |sg| %>
-    <li>
-      <%= link_to sg.goal.name, [@student, sg] %>
-      <%= button_to "❌", student_student_goal_path(@student, sg), method: :delete, data: { confirm: "Are you sure?" }%>
-    </li>
-  <% end %>
-</ul>
-<ul>
-  <h4><%= "#{@student.first_name}'s Accommodations" %></h4>
-  <% @student.student_accommodations.each do |sa| %>
-    <li>
-      <%= link_to sa.accommodation.name, [@student, sa] %>
-      <%= button_to "❌", student_student_accommodation_path(@student, sa), method: :delete, data: { confirm: "Are you sure?" }%>
-    </li>
-  <% end %>
-</ul>
-<% if policy(StudentGoal).new? %>
-  <%= link_to "Add Goal", new_student_student_goal_path(@student) %>
-<% end %>
-<br>
-<% if policy(StudentAccommodation).new? %>
-  <%= link_to "Add Accommodation", new_student_student_accommodation_path(@student) %>
-<% end %>
-<br>
-<% if policy(@students).index? %>
-  <%= link_to "Edit #{@student.first_name}", edit_student_path(@student) %>
-<% end %>
-<br>
-<% if policy(@student).destroy? %>
-  <%= button_to "Delete #{@student.first_name}", student_path(@student), method: :delete, data: { confirm: "Are you sure?" } %>
-<% end %>
-<br>
-<% if policy(@students).index? %>
-  <%= link_to "All Students", students_path(@students) %>
-<% end %>
+<div class="space-y-6">
+  <!-- Header -->
+  <div>
+    <h1 class="text-2xl font-semibold tracking-tight">
+      <%= @student.first_name %> <%= @student.last_name %>
+    </h1>
+    <p class="mt-1 text-sm text-slate-600">Student details & records</p>
+  </div>
+
+  <!-- Info card -->
+  <section class="bg-white rounded-2xl shadow p-5">
+    <h2 class="text-lg font-medium text-slate-900 mb-4">Info</h2>
+    <dl class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div>
+        <dt class="text-sm text-slate-500">Date of Birth</dt>
+        <dd class="text-slate-900 font-medium"><%= @student.dob.strftime("%m/%d/%Y") %></dd>
+      </div>
+      <div>
+        <dt class="text-sm text-slate-500">SPED Diagnosis</dt>
+        <dd class="text-slate-900 font-medium"><%= @student.diagnosis %></dd>
+      </div>
+      <div>
+        <dt class="text-sm text-slate-500">Grade Level</dt>
+        <dd class="text-slate-900 font-medium"><%= @student.grade_level %></dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- Goals -->
+  <section class="bg-white rounded-2xl shadow p-5">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="text-lg font-medium text-slate-900"><%= @student.first_name %>'s Goals</h2>
+      <% if policy(StudentGoal).new? %>
+        <%= link_to "Add Goal",
+            new_student_student_goal_path(@student),
+            class: "inline-flex items-center rounded-lg bg-blue-600 px-3 py-1.5 text-white text-sm hover:bg-blue-700" %>
+      <% end %>
+    </div>
+
+    <ul class="divide-y divide-slate-100">
+      <% @student.student_goals.each do |sg| %>
+        <li class="py-3 flex items-center justify-between">
+          <%= link_to sg.goal.name, [@student, sg], class: "font-medium text-slate-800 hover:underline" %>
+          <div class="flex items-center gap-2">
+            <%# Delete %>
+            <%= button_to "Delete",
+                  student_student_goal_path(@student, sg),
+                  method: :delete,
+                  data: { confirm: "Are you sure?" },
+                  class: "rounded-md bg-red-50 px-3 py-1.5 text-sm text-red-700 hover:bg-red-100" %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+
+  <!-- Accommodations -->
+  <section class="bg-white rounded-2xl shadow p-5">
+    <div class="flex items-center justify-between mb-3">
+      <h2 class="text-lg font-medium text-slate-900"><%= @student.first_name %>'s Accommodations</h2>
+      <% if policy(StudentAccommodation).new? %>
+        <%= link_to "Add Accommodation",
+            new_student_student_accommodation_path(@student),
+            class: "inline-flex items-center rounded-lg bg-blue-600 px-3 py-1.5 text-white text-sm hover:bg-blue-700" %>
+      <% end %>
+    </div>
+
+    <ul class="divide-y divide-slate-100">
+      <% @student.student_accommodations.includes(:accommodation).each do |sa| %>
+        <li class="py-3 flex items-center justify-between">
+          <%= link_to sa.accommodation.name, [@student, sa], class: "font-medium text-slate-800 hover:underline" %>
+          <%= button_to "Delete",
+                student_student_accommodation_path(@student, sa),
+                method: :delete,
+                data: { confirm: "Are you sure?" },
+                class: "rounded-md bg-red-50 px-3 py-1.5 text-sm text-red-700 hover:bg-red-100" %>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+
+  <!-- Actions -->
+  <section class="flex flex-wrap gap-3">
+    <% if policy(@students).index? %>
+      <%= link_to "Edit #{@student.first_name}",
+          edit_student_path(@student),
+          class: "inline-flex items-center rounded-lg bg-slate-800 px-3 py-1.5 text-white text-sm hover:bg-slate-700" %>
+    <% end %>
+
+    <% if policy(@student).destroy? %>
+      <%= button_to "Delete #{@student.first_name}",
+          student_path(@student),
+          method: :delete,
+          data: { confirm: "Are you sure?" },
+          class: "inline-flex items-center rounded-lg bg-red-600 px-3 py-1.5 text-white text-sm hover:bg-red-700" %>
+    <% end %>
+
+    <% if policy(@students).index? %>
+      <%= link_to "All Students",
+          students_path,
+          class: "inline-flex items-center rounded-lg bg-slate-100 px-3 py-1.5 text-slate-800 text-sm hover:bg-slate-200" %>
+    <% end %>
+  </section>
+</div>
