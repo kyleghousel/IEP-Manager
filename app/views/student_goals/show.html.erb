@@ -7,9 +7,9 @@
 <p>Start Date: <%= @student_goal.start_on.strftime("%m/%d/%Y") %></p>
 <p>Target Date: <%= @student_goal.target_date.strftime("%m/%d/%Y") %></p>
 <p>Baseline: <%= @student_goal.baseline %></p>
-<p>Status: <%= @student_goal.status.sub("_", " ").capitalize %></p>
+<p>Status: <%= @student_goal.status.sub("_", " ").titleize %></p>
 <br>
-<h3>Progress</h3>
+<h3>Goal Progress</h3>
 
 <%= form_with model: [@student, @student_goal, @progress_entry], data: { turbo: false } do |f| %>
   <%= render "shared/errors", resource: @progress_entry %>
@@ -35,18 +35,27 @@
   </div>
 
   <%= f.submit "Add Entry"%>
+
 <% end %>
 
 <ul>
   <% @progress_entries.each do |entry| %>
     <li>
       <h5>Entry <%= entry.recorded_on.strftime("%m/%d/%Y") %></h5>
+
       <p><%= entry.note %></p>
+
       <% if entry.evidence_url %>
         <p>Evidence: <%= entry.evidence_url %></p>
       <% end %>
+
       <% if entry.score_numeric %>
         <p>Score: <%= entry.score_numeric %></p>
+      <% end %>
+
+      <% if policy(entry).destroy? %>
+        <%= button_to "❌", student_student_goal_progress_entry_path(@student, @student_goal, entry),
+        method: :delete, data: { confirm: "Are you sure?" } %>
       <% end %>
     </li>
   <% end %>

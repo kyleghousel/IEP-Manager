@@ -33,7 +33,7 @@ private
     @student = Student.find(params[:student_id])
   end
 
-  def student_goal_params
+  def student_accommodation_params
     params.require(:student_accommodation).permit(
       :student_id,
       :accommodation_id,

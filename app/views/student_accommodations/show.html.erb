@@ -1,8 +1,23 @@
-<h1><%= @student_accommodation.accommodation.name %> accommodation for <%= @student_accommodation.student.first_name %></h1>
-<h3><%= @student_accommodation.accommodation.category %></h3>
+<h1><%= @student_accommodation.accommodation.name %> Accommodation for <%= @student_accommodation.student.first_name %></h1>
 
-<p>Start Date: <%= @student_accommodation.start_on.strftime("%m/%d/%Y") %></p>
-<p>End Date: <%= @student_accommodation.end_on.strftime("%m/%d/%Y") %></p>
-<p>Notes:: <%= @student_accommodation.notes %></p>
+<% if @student_accommodation.accommodation.details %>
+  <h3>Details</h3>
+  <p><%= @student_accommodation.accommodation.details %></p>
+<% end %>
+
+<% if @student_accommodation.start_on %>
+  <p>Start Date: <%= @student_accommodation.start_on.strftime("%m/%d/%Y") %></p>
+<% end %>
+
+<% if @student_accommodation.end_on %>
+  <p>End Date: <%= @student_accommodation.end_on.strftime("%m/%d/%Y") %></p>
+  <p>Notes:: <%= @student_accommodation.notes %></p>
+<% end %>
+
+<br>
+<% if policy(@student_accommodation).destroy? %>
+  <%= button_to "Remove Accommodation", student_student_accommodation_path(@student, @student_accommodation),
+  method: :delete, data: { confirm: "Are you sure?" } %>
+<% end %>
 <br>
 <%= link_to "Back to #{@student_accommodation.student.first_name}", @student_accommodation.student %>
