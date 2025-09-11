@@ -7,7 +7,7 @@ AC: rspec runs; rubocop passes baseline; factories folder present.
 T: boots, one dummy spec green.
 
 2. Define database schema via migrations
-As a developer, I want tables for users, students, goals, accommodations, student_goals, progress_entries, student_accommodations, meetings so I can persist domain data.
+As a developer, I want tables for users, students, goals, accommodations, student_goals, progress_entries, student_accommodations, so I can persist domain data.
 AC: all tables + indexes + FKs; roles enum or validated string.
 T: model specs assert associations and FKs.
 
@@ -58,60 +58,45 @@ As a teacher, I want “Active Goals” and “Overdue Goals” lists so I can p
 AC: StudentGoal .active, .overdue shown on dashboard.
 T: scope specs with date fixtures.
 
-12. Progress timeline filters
-As a teacher, I want to filter entries by month and author so I can prep meetings.
+12. Progress timeline filters 😮‍💨
+As a teacher, I want to filter entries by month and author so I can prep accordingly.
 AC: filter UI; empty states.
 T: scope spec .for_month and .by_author.
 
-13. Meetings scheduling 😮‍💨
-As a teacher, I want to schedule meetings for a student so I can coordinate team reviews.
-AC: create/list meetings under student; future/past tabs.
-T: validations for type; scope specs .upcoming, .past.
-
-14. Authorization final pass
+13. Authorization final pass
 As a parent, I want read-only access; as a teacher, write only on students I own; as admin, full.
 AC: blocked actions tested for each role.
 T: request specs with three roles.
 
-15. Error UX + partials 😮‍💨
+14. Error UX + partials 😮‍💨
 As a user, I want clear inline errors and shared form partials so forms are fast and consistent.
 AC: shared _errors partial used across forms.
 T: feature test asserts error rendering.
 
 ## Tests, DRY, Docs, Release
-16. Aggregates on StudentGoal
+15. Aggregates on StudentGoal 😮‍💨
 As a teacher, I want last entry date and average score on the goal so I can see trend at a glance.
 AC: derived or cached fields update on create/update/delete of entries.
 T: model spec mutates entries and asserts aggregates.
 
-17. Compliance view: “No entry in N days”
+16. Compliance view: “No entry in N days” 😮‍💨
 As a teacher, I want a list of student goals with no entries in 14 days so I can follow up.
 AC: scope + dashboard card; N configurable.
 T: scope spec with dates.
 
-18. Integration test: end-to-end progress log
-As a user, I want a full flow test from login → add student_goal → add progress → see dashboard card so regressions are caught.
-AC: system or request test passes.
-T: green.
-
-19. RuboCop clean + README
+17. RuboCop clean + README
 As a developer, I want zero lint offenses and install docs so others can run the app.
 AC: rubocop no offenses; README with setup, seeds, test, roles.
 T: none beyond RuboCop run.
 
-20. Seed expansion for demo 😮‍💨
+18. Seed expansion for demo 😮‍💨
 As a reviewer, I want realistic demo data so I can evaluate quickly.
-AC: 3 students, 6 goals, 12 entries, 3 meetings, 3 accommodations.
+AC: 3 students, 6 goals, 12 entries, 3 accommodations.
 T: seeds idempotent.
-
-21. Nice-to-have exports (CSV) 😮‍💨
-As a teacher, I want CSV export of a goal’s progress entries so I can share in meetings.
-AC: CSV download from goal show.
-T: request spec returns CSV mime and rows.
 
 ---
 
 **Definition of Done**
 - AC met, specs added, rubocop clean, role checks enforced, errors rendered, linked from nav, seeds cover feature.
 
-**Stretch goals/nice-to-haves are time-permitting, and denoted by 😮‍💨**
+**Stretch goals/nice-to-haves are time-permitting, and denoted by 😮‍💨, but would be ideal order**
