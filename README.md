@@ -27,10 +27,13 @@ Roles: Admin (full access), Teacher (limited write), Parent (read-only).
 
 ### Setup
 
-git clone https://github.com/<your-username>/IEP-Manager.git
-cd IEP-Manager
-bundle install
-bin/rails db:setup   # creates, migrates, seeds
+`git clone https://github.com/<your-username>/IEP-Manager.git`
+
+`cd IEP-Manager`
+
+`bundle install`
+
+`bin/rails db:setup   # creates, migrates, seeds`
 
 The seed file creates:
 	•	Users: one admin, one teacher
@@ -41,16 +44,19 @@ The seed file creates:
 
 ### Run the server:
 
-bin/rails s
+`bin/rails s`
 
-Visit http://localhost:3000 and log in with seeded credentials (see db/seeds.rb).
+Visit http://localhost:3000 and log in with seeded credentials (see db/seeds.rb), or follow Sign Up flow.
 
 ⸻
 
 ### Running Tests & Lint
 
-bundle exec rspec   # run model, request, and policy specs
-bundle exec rubocop # style & lint
+##### run model, request, and policy specs`
+`bundle exec rspec`
+
+##### style & lint
+`bundle exec rubocop`
 
 Factories are defined under spec/factories and cover all models.
 
