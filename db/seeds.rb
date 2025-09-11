@@ -1,7 +1,7 @@
 puts "Seeding users..."
 admin = User.find_or_initialize_by(email: "admin@example.com")
 admin.assign_attributes(first_name: "Ada", last_name: "Admin", role: "admin",
-                        password: "changeme!", password_confirmation: "changeme!")
+                        password: "adminpassword", password_confirmation: "adminpassword")
 admin.save!
 
 teacher = User.find_or_initialize_by(email: "teacher@example.com")

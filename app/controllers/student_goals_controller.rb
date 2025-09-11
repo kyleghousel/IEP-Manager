@@ -25,7 +25,7 @@ class StudentGoalsController < ApplicationController
   def destroy
     @student_goal = @student.student_goals.find(params[:id])
     @student_goal.destroy
-    redirect_to student_student_goals_path(@student), notice: "StudentGoal was succesfully deleted"
+    redirect_to student_path(@student), notice: "StudentGoal was succesfully deleted"
   end
 
 private

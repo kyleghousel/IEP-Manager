@@ -1,7 +1,8 @@
 # IEP-Manager
 
-A Rails 8 application for tracking Individualized Education Program (IEP) data.
-Teachers can manage students, assign learning goals, record progress, and document accommodations, while parents and administrators have role-based access to view or manage records.
+This is a Rails 8 application for tracking Individualized Education Program (IEP) data. Being a Special Education Teacher means that you are given a "caseload" of students of which you are in charge of managing. Special Education teachers don't necessarily hand out grades as teachers in "typical" classrooms do, instead assigning and tracking individualized goal progress agreed upon in the IEP for each student in their caseload.
+
+In this app, teachers can manage students, assign learning goals, record progress, and document accommodations, while parents and administrators also have role-based access to view or manage records.
 
 ⸻
 
@@ -28,26 +29,31 @@ Teachers can manage students, assign learning goals, record progress, and docume
 
 ### Setup
 
-`git clone https://github.com/<your-username>/IEP-Manager.git`
+`git clone https://github.com/kyleghousel/IEP-Manager.git`
 
 `cd IEP-Manager`
 
 `bundle install`
 
-`bin/rails db:setup   # creates, migrates, seeds`
+##### creates, migrates, seeds`
+`bin/rails db:setup`
 
 The seed file creates:
-	•	Users: one admin, one teacher
-	•	Students: 2 sample students
-	•	Goals: 3 sample goals
-	•	Accommodations: 2 sample accommodations
-	•	Links between them for quick demo.
+	•	Users: one admin, one teacher, one parent
+	•	Students: 4 sample students
+	•	Goals: 5 sample goals
+	•	Accommodations: 3 sample accommodations
+	•	Links between them for quick demo with progress entries.
+
+For quick reference, the seed admin user's login info is:
+	email: admin@example.com
+	password: adminpassword
 
 ### Run the server:
 
 `bin/rails s`
 
-Visit http://localhost:3000 and log in with seeded credentials (see db/seeds.rb), or follow Sign Up flow.
+Visit http://localhost:3000 and log in with seeded credentials (see db/seeds.rb for additional login info), or follow Sign Up flow.
 
 ⸻
 

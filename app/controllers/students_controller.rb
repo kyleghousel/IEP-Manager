@@ -44,10 +44,10 @@ class StudentsController < ApplicationController
   end
 
   def destroy
-    @student = Student.find(params[:student_id])
+    @student = Student.find(params[:id])
     authorize @student
     @student.destroy
-    redirect_to @students, notice: "Removed student"
+    redirect_to students_path, notice: "Removed student"
   end
 
 private
