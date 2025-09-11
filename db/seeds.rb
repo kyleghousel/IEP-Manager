@@ -102,15 +102,3 @@ StudentAccommodation.find_or_create_by!(student: s2, accommodation: a_set) do |s
   sa.start_on = Date.today - 5
   sa.notes = "Seat near teacher for small-group."
 end
-
-Meeting.find_or_create_by!(student: s1, organizer: teacher, name: "Milo Interim Review") do |m|
-  m.scheduled_at = Time.zone.now + 7.days
-
-  m.meeting_type = "interim"
-  m.notes = "Review reading data and adjust goal if needed."
-end
-Meeting.find_or_create_by!(student: s2, organizer: admin, name: "Ava Annual IEP") do |m|
-  m.scheduled_at = Time.zone.now + 30.days
-  m.meeting_type = "annual"
-  m.notes = "Annual review and service minutes."
-end
