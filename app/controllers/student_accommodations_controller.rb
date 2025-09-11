@@ -22,8 +22,9 @@ class StudentAccommodationsController < ApplicationController
 
   def destroy
     @student_accommodation = @student.student_accommodations.find(params[:id])
+    authorize @student_accommodation
     @student_accommodation.destroy
-    redirect_to student_student_accommodations_path(@student), notice: "StudentAccommodation was succesfully deleted"
+    redirect_to student_path(@student), notice: "StudentAccommodation was succesfully deleted"
   end
 
 private

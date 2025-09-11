@@ -18,6 +18,7 @@ class StudentGoalsController < ApplicationController
 
   def show
     @student_goal = @student.student_goals.find(params[:id])
+    @progress_entries = @student_goal.progress_entries.order(recorded_on: :desc)
   end
 
   def destroy
