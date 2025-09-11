@@ -25,10 +25,4 @@ RSpec.describe Goal, type: :model do
       expect(result).not_to include(inactive)
     end
   end
-
-  describe "dependent destroys", :pending do
-    it "destroys a student_goal when destroyed" do
-      student_goal = create(:student_goal)
-    end
-  end
 end
