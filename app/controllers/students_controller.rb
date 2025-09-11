@@ -3,6 +3,8 @@ class StudentsController < ApplicationController
 
   def index
     @students = policy_scope(Student)
+    @goals = policy_scope(Goal)
+    @accommodations = policy_scope(Accommodation)
   end
 
   def show

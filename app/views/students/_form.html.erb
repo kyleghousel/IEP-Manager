@@ -1,30 +1,39 @@
-<%= form_with model: @student, data: { turbo: false } do |f| %>
+<%= form_with model: @student, data: { turbo: false }, class: "space-y-6 max-w-xl" do |f| %>
   <%= render "shared/errors", resource: @student %>
 
   <div>
-    <%= f.label :first_name %>
-    <%= f.text_field :first_name %>
+    <%= f.label :first_name, class: "block text-sm font-medium text-slate-700" %>
+    <%= f.text_field :first_name,
+          class: "mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-slate-500 focus:ring-slate-500" %>
   </div>
 
   <div>
-    <%= f.label :last_name %>
-    <%= f.text_field :last_name %>
+    <%= f.label :last_name, class: "block text-sm font-medium text-slate-700" %>
+    <%= f.text_field :last_name,
+          class: "mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-slate-500 focus:ring-slate-500" %>
   </div>
 
   <div>
-    <%= f.label :dob %>
-    <%= f.date_field :dob %>
+    <%= f.label :dob, "Date of Birth",
+          class: "block text-sm font-medium text-slate-700" %>
+    <%= f.date_field :dob,
+          class: "mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-slate-500 focus:ring-slate-500" %>
   </div>
 
   <div>
-    <%= f.label :diagnosis %>
-    <%= f.text_field :diagnosis %>
+    <%= f.label :diagnosis, class: "block text-sm font-medium text-slate-700" %>
+    <%= f.text_field :diagnosis,
+          class: "mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-slate-500 focus:ring-slate-500" %>
   </div>
 
   <div>
-    <%= f.label :grade_level %>
-    <%= f.text_field :grade_level %>
+    <%= f.label :grade_level, class: "block text-sm font-medium text-slate-700" %>
+    <%= f.text_field :grade_level,
+          class: "mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-slate-500 focus:ring-slate-500" %>
   </div>
 
-  <%= f.submit %>
+  <div>
+    <%= f.submit "Save Student",
+          class: "inline-flex items-center rounded-md bg-slate-800 px-4 py-2 text-white hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500" %>
+  </div>
 <% end %>

@@ -1,25 +1,36 @@
-<%= form_with model: @goal, data: { turbo: false } do |f| %>
+<%= form_with model: @goal, data: { turbo: false }, class: "space-y-4 max-w-lg" do |f| %>
   <%= render "shared/errors", resource: @goal %>
 
   <div>
-    <%= f.label :name %>
-    <%= f.text_field :name %>
+    <%= f.label :name, class: "block text-sm font-medium text-slate-700" %>
+    <%= f.text_field :name,
+          required: true,
+          class: "mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-slate-500 focus:ring-slate-500" %>
   </div>
 
   <div>
-    <%= f.label :objectives %>
-    <%= f.text_area :objectives, rows: 4 %>
+    <%= f.label :objectives, class: "block text-sm font-medium text-slate-700" %>
+    <%= f.text_area :objectives,
+          rows: 4,
+          required: true,
+          class: "mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-slate-500 focus:ring-slate-500" %>
   </div>
 
   <div>
-    <%= f.label :category %>
-    <%= f.text_field :category %>
+    <%= f.label :category, class: "block text-sm font-medium text-slate-700" %>
+    <%= f.text_field :category,
+          class: "mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-slate-500 focus:ring-slate-500" %>
   </div>
 
-  <div>
-    <%= f.label :active %>
-    <%= f.check_box :active %>
+  <div class="flex items-center space-x-2">
+    <%= f.check_box :active,
+          class: "rounded border-slate-300 text-blue-600 focus:ring-blue-500" %>
+    <%= f.label :active, class: "text-sm font-medium text-slate-700" %>
   </div>
 
-  <%= f.submit %>
+  <%= f.submit (@goal.persisted? ? "Update Goal" : "Create Goal"),
+        class: "inline-flex items-center rounded-md bg-blue-600 px-4 py-2 text-white text-sm font-semibold hover:bg-blue-700" %>
 <% end %>
+<div class="mt-6">
+  <%= link_to "Back", students_path, class: "text-sm text-slate-600 hover:text-slate-800" %>
+</div>

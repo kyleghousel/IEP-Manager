@@ -45,3 +45,6 @@
 # Byebug/Capybara etc.
 .byebug_history
 capybara-*.html
+
+/app/assets/builds/*
+!/app/assets/builds/.keep

@@ -1,37 +1,32 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Iep Manager" %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="mobile-web-app-capable" content="yes">
+    <title>IEP Manager</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
-    <%= yield :head %>
-
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
-    <link rel="icon" href="/icon.png" type="image/png">
-    <link rel="icon" href="/icon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="/icon.png">
-
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
-    <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "tailwind", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
+  <body class="min-h-screen bg-slate-50 text-slate-800">
+    <header class="bg-white border-b">
+      <nav class="mx-auto max-w-5xl px-4 py-3 flex items-center justify-between">
+        <%= link_to "IEP Manager", root_path, class: "text-xl font-semibold tracking-tight" %>
+        <div class="flex items-center gap-3">
+          <% if user_signed_in? %>
+            <span class="text-sm text-slate-600"><%= current_user.email %></span>
+            <%= button_to "Sign out", destroy_user_session_path, method: :delete,
+                  class: "inline-flex items-center rounded-md bg-slate-800 px-3 py-1.5 text-white text-sm hover:bg-slate-700" %>
+          <% else %>
+            <%= link_to "Sign in", new_user_session_path,
+                  class: "inline-flex items-center rounded-md bg-slate-800 px-3 py-1.5 text-white text-sm hover:bg-slate-700" %>
+          <% end %>
+        </div>
+      </nav>
+    </header>
 
-  <body>
-    <%= yield %>
-    <% if user_signed_in? %>
-      <p>
-        Logged in as <%= current_user.first_name %>
-        <%= button_to "Logout", destroy_user_session_path, method: :delete %>
-      </p>
-    <% end %>
+    <main class="mx-auto max-w-5xl px-4 py-6 space-y-6">
+      <%= render "shared/flash" %>
+      <%= yield %>
+    </main>
   </body>
 </html>

@@ -1,23 +1,44 @@
-<h1><%= @student_accommodation.accommodation.name %> Accommodation for <%= @student_accommodation.student.full_name %></h1>
+<h1 class="text-2xl font-bold mb-4">
+  <%= @student_accommodation.accommodation.name %>
+  <span class="font-normal text-slate-600">
+    accommodation for <%= @student_accommodation.student.full_name %>
+  </span>
+</h1>
 
-<% if @student_accommodation.accommodation.details %>
-  <h3>Details</h3>
-  <p><%= @student_accommodation.accommodation.details %></p>
+<% if @student_accommodation.accommodation.details.present? %>
+  <div class="mb-4">
+    <h3 class="text-lg font-semibold text-slate-700 mb-1">Details</h3>
+    <p class="text-slate-800"><%= @student_accommodation.accommodation.details %></p>
+  </div>
 <% end %>
 
-<% if @student_accommodation.start_on %>
-  <p>Start Date: <%= @student_accommodation.start_on.strftime("%m/%d/%Y") %></p>
-<% end %>
+<div class="space-y-1 mb-6 text-slate-800">
+  <% if @student_accommodation.start_on.present? %>
+    <p><span class="font-semibold">Start Date:</span>
+      <%= @student_accommodation.start_on.strftime("%m/%d/%Y") %></p>
+  <% end %>
 
-<% if @student_accommodation.end_on %>
-  <p>End Date: <%= @student_accommodation.end_on.strftime("%m/%d/%Y") %></p>
-  <p>Notes:: <%= @student_accommodation.notes %></p>
-<% end %>
+  <% if @student_accommodation.end_on.present? %>
+    <p><span class="font-semibold">End Date:</span>
+      <%= @student_accommodation.end_on.strftime("%m/%d/%Y") %></p>
+  <% end %>
 
-<br>
-<% if policy(@student_accommodation).destroy? %>
-  <%= button_to "Remove Accommodation", student_student_accommodation_path(@student, @student_accommodation),
-  method: :delete, data: { confirm: "Are you sure?" } %>
-<% end %>
-<br>
-<%= link_to "Back to #{@student_accommodation.student.first_name}", @student_accommodation.student %>
+  <% if @student_accommodation.notes.present? %>
+    <p><span class="font-semibold">Notes:</span>
+      <%= @student_accommodation.notes %></p>
+  <% end %>
+</div>
+
+<div class="flex items-center gap-4">
+  <% if policy(@student_accommodation).destroy? %>
+    <%= button_to "Remove Accommodation",
+          student_student_accommodation_path(@student, @student_accommodation),
+          method: :delete,
+          data: { confirm: "Are you sure?" },
+          class: "inline-flex items-center rounded-md bg-red-600 px-4 py-2 text-white text-sm font-medium hover:bg-red-700" %>
+  <% end %>
+
+  <%= link_to "Back to #{@student_accommodation.student.first_name}",
+        @student_accommodation.student,
+        class: "text-sm text-blue-600 hover:underline" %>
+</div>

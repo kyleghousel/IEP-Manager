@@ -1,0 +1,8 @@
+<% flash.each do |type, msg| %>
+  <% cls = case type.to_s
+     when "notice" then "bg-emerald-50 text-emerald-800 ring-1 ring-emerald-200"
+     when "alert"  then "bg-rose-50 text-rose-800 ring-1 ring-rose-200"
+     else "bg-sky-50 text-sky-800 ring-1 ring-sky-200"
+   end %>
+  <div class="mb-4 rounded-md px-4 py-3 text-sm <%= cls %>"><%= msg %></div>
+<% end %>
