@@ -18,6 +18,7 @@ class StudentGoalsController < ApplicationController
 
   def show
     @student_goal = @student.student_goals.find(params[:id])
+    @progress_entry = @student_goal.progress_entries.new
     @progress_entries = @student_goal.progress_entries.order(recorded_on: :desc)
   end
 
@@ -41,7 +42,8 @@ private
       :baseline,
       :target_value,
       :status,
-      :mastery_percent
+      :mastery_percent,
+      progress_entries_attributes: %i[id recorded_on note evidence_url evidence_url score_numeric]
     )
   end
 end

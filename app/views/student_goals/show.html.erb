@@ -10,6 +10,33 @@
 <p>Status: <%= @student_goal.status.sub("_", " ").capitalize %></p>
 <br>
 <h3>Progress</h3>
+
+<%= form_with model: [@student, @student_goal, @progress_entry], data: { turbo: false } do |f| %>
+  <%= render "shared/errors", resource: @progress_entry %>
+
+  <div>
+    <%= f.label :note, "Note *" %>
+    <%= f.text_area :note %>
+  </div>
+
+  <div>
+    <%= f.label :recorded_on, "Recorded On*" %>
+    <%= f.date_field :recorded_on %>
+  </div>
+
+  <div>
+    <%= f.label :evidence_url, "Evidence" %>
+    <%= f.text_field :evidence_url %>
+  </div>
+
+  <div>
+    <%= f.label :score_numeric, "Score" %>
+    <%= f.number_field :score_numeric %>
+  </div>
+
+  <%= f.submit "Add Entry"%>
+<% end %>
+
 <ul>
   <% @progress_entries.each do |entry| %>
     <li>
@@ -18,7 +45,9 @@
       <% if entry.evidence_url %>
         <p>Evidence: <%= entry.evidence_url %></p>
       <% end %>
-      <p>Score: <%= entry.score_numeric %></p>
+      <% if entry.score_numeric %>
+        <p>Score: <%= entry.score_numeric %></p>
+      <% end %>
     </li>
   <% end %>
 </ul>
