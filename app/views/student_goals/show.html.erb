@@ -9,4 +9,18 @@
 <p>Baseline: <%= @student_goal.baseline %></p>
 <p>Status: <%= @student_goal.status.sub("_", " ").capitalize %></p>
 <br>
+<h3>Progress</h3>
+<ul>
+  <% @progress_entries.each do |entry| %>
+    <li>
+      <h5>Entry <%= entry.recorded_on.strftime("%m/%d/%Y") %></h5>
+      <p><%= entry.note %></p>
+      <% if entry.evidence_url %>
+        <p>Evidence: <%= entry.evidence_url %></p>
+      <% end %>
+      <p>Score: <%= entry.score_numeric %></p>
+    </li>
+  <% end %>
+</ul>
+<br>
 <%= link_to "Back to #{@student_goal.student.first_name}", @student_goal.student %>
