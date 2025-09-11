@@ -1,5 +1,4 @@
 <div class="space-y-6">
-  <!-- Header -->
   <div>
     <h1 class="text-2xl font-semibold tracking-tight">
       <%= @student.first_name %> <%= @student.last_name %>
@@ -7,7 +6,6 @@
     <p class="mt-1 text-sm text-slate-600">Student details & records</p>
   </div>
 
-  <!-- Info card -->
   <section class="bg-white rounded-2xl shadow p-5">
     <h2 class="text-lg font-medium text-slate-900 mb-4">Info</h2>
     <dl class="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -26,7 +24,6 @@
     </dl>
   </section>
 
-  <!-- Goals -->
   <section class="bg-white rounded-2xl shadow p-5">
     <div class="flex items-center justify-between mb-3">
       <h2 class="text-lg font-medium text-slate-900"><%= @student.first_name %>'s Goals</h2>
@@ -54,7 +51,6 @@
     </ul>
   </section>
 
-  <!-- Accommodations -->
   <section class="bg-white rounded-2xl shadow p-5">
     <div class="flex items-center justify-between mb-3">
       <h2 class="text-lg font-medium text-slate-900"><%= @student.first_name %>'s Accommodations</h2>
@@ -79,7 +75,6 @@
     </ul>
   </section>
 
-  <!-- Actions -->
   <section class="flex flex-wrap gap-3">
     <% if policy(@students).index? %>
       <%= link_to "Edit #{@student.first_name}",
