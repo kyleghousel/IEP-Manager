@@ -6,15 +6,16 @@ Teachers can manage students, assign learning goals, record progress, and docume
 ⸻
 
 ## Features Implemented
-	•	Authentication & Roles – Sign up / log in / log out with Devise.
-Roles: Admin (full access), Teacher (limited write), Parent (read-only).
-	•	Students CRUD – Create, edit, and view student profiles.
-	•	Goals Catalog – Admins manage goal templates with name, objectives, category, and active toggle.
-	•	Student Goals – Teachers assign goals to students with start/target dates, baseline, and target values.
-	•	Progress Entries – Teachers log dated notes, optional score, and evidence for each student goal. Entries are listed newest first.
-	•	Accommodations – Catalog of presentation/response/setting/timing supports and ability to link them to students with start/end dates.
-	•	Authorization – All controller actions guarded with Pundit policies per role.
-	•	Testing & Linting – RSpec model/request/policy specs, FactoryBot factories, and RuboCop enforced style.
+- Authentication & Roles
+- Sign up / log in / log out with Devise.
+- Roles: Admin (full access), Teacher (limited write), Parent (read-only).
+- Students CRUD – Create, edit, and view student profiles.
+- Goals Catalog – Admins manage goal templates with name, objectives, category, and active toggle.
+- Student Goals – Teachers assign goals to students with start/target dates, baseline, and target values.
+- Progress Entries – Teachers log dated notes, optional score, and evidence for each student goal. Entries are listed newest first.
+- Accommodations – Catalog of presentation/response/setting/timing supports and ability to link them to students with start/end dates.
+- Authorization – All controller actions guarded with Pundit policies per role.
+- Testing & Linting – RSpec model/request/policy specs, FactoryBot factories, and RuboCop enforced style.
 
 ⸻
 
@@ -52,7 +53,7 @@ Visit http://localhost:3000 and log in with seeded credentials (see db/seeds.rb)
 
 ### Running Tests & Lint
 
-##### run model, request, and policy specs`
+##### run model, request, and policy specs
 `bundle exec rspec`
 
 ##### style & lint

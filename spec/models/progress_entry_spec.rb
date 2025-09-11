@@ -9,7 +9,7 @@ RSpec.describe ProgressEntry, type: :model do
   describe "validations" do
     it { should validate_presence_of(:recorded_on) }
     it { should validate_presence_of(:note) }
-    it { is_expected.to validate_length_of(:note).is_at_least(30).is_at_most(250) }
+    it { is_expected.to validate_length_of(:note).is_at_least(10).is_at_most(250) }
     it { is_expected.to validate_numericality_of(:score_numeric)
          .only_integer
          .is_greater_than_or_equal_to(0)

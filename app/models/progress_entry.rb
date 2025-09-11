@@ -3,7 +3,7 @@ class ProgressEntry < ApplicationRecord
   belongs_to :user
 
   validates :recorded_on, :note, presence: true
-  validates :note, length: { in: 30..250 }
+  validates :note, length: { in: 10..250 }
   validates :score_numeric, numericality: {
     only_integer: true,
     greater_than_or_equal_to: 0,
