@@ -4,7 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :progress_entries, dependent: :destroy
-  has_many :meetings, foreign_key: :organizer_id, dependent: :destroy
 
   ROLES = %w[parent teacher admin].freeze
 
