@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_10_182415) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_11_015549) do
   create_table "accommodations", force: :cascade do |t|
     t.string "name"
     t.text "details"
@@ -26,19 +26,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_10_182415) do
     t.boolean "active", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "meetings", force: :cascade do |t|
-    t.integer "student_id", null: false
-    t.integer "organizer_id", null: false
-    t.string "name", null: false
-    t.datetime "scheduled_at", null: false
-    t.string "meeting_type"
-    t.text "notes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["organizer_id"], name: "index_meetings_on_organizer_id"
-    t.index ["student_id"], name: "index_meetings_on_student_id"
   end
 
   create_table "progress_entries", force: :cascade do |t|
@@ -107,8 +94,6 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_10_182415) do
     t.check_constraint "role IN ('parent','teacher','admin')", name: "users_role_check"
   end
 
-  add_foreign_key "meetings", "students"
-  add_foreign_key "meetings", "users", column: "organizer_id"
   add_foreign_key "progress_entries", "student_goals"
   add_foreign_key "progress_entries", "users"
   add_foreign_key "student_accommodations", "accommodations"

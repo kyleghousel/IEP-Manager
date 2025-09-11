@@ -24,4 +24,11 @@ RSpec.describe Student, type: :model do
       meeting = create(:meeting)
     end
   end
+
+  describe "#full_name" do
+    it "returns the student's full name" do
+      student = create(:student)
+      expect(student.full_name).to eq("#{student.first_name} #{student.last_name}")
+    end
+  end
 end

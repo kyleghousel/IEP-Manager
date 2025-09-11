@@ -1,4 +1,4 @@
-<h1><%= @student_goal.goal.name %> Goal for <%= @student_goal.student.first_name %></h1>
+<h1><%= @student_goal.goal.name %> Goal for <%= @student_goal.student.full_name %></h1>
 <h3><%= @student_goal.goal.category %></h3>
 <p>
   SWBAT: <%= @student_goal.goal.objectives.sub(/[[:punct:]]+\z/, "") %>
