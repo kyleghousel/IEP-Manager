@@ -77,6 +77,12 @@
 
   <section class="flex flex-wrap gap-3">
     <% if policy(@students).index? %>
+      <%= link_to "Back",
+              students_path,
+              class: "inline-block rounded-md bg-slate-200 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-300" %>
+    <% end %>
+
+    <% if policy(@students).edit? %>
       <%= link_to "Edit #{@student.first_name}",
           edit_student_path(@student),
           class: "inline-flex items-center rounded-lg bg-slate-800 px-3 py-1.5 text-white text-sm hover:bg-slate-700" %>
@@ -88,12 +94,6 @@
           method: :delete,
           data: { confirm: "Are you sure?" },
           class: "inline-flex items-center rounded-lg bg-red-600 px-3 py-1.5 text-white text-sm hover:bg-red-700" %>
-    <% end %>
-
-    <% if policy(@students).index? %>
-      <%= link_to "All Students",
-          students_path,
-          class: "inline-flex items-center rounded-lg bg-slate-100 px-3 py-1.5 text-slate-800 text-sm hover:bg-slate-200" %>
     <% end %>
   </section>
 </div>
