@@ -39,12 +39,13 @@
         <li class="py-3 flex items-center justify-between">
           <%= link_to sg.goal.name, [@student, sg], class: "font-medium text-slate-800 hover:underline" %>
           <div class="flex items-center gap-2">
-            <%# Delete %>
-            <%= button_to "Delete",
-                  student_student_goal_path(@student, sg),
-                  method: :delete,
-                  data: { confirm: "Are you sure?" },
-                  class: "rounded-md bg-red-50 px-3 py-1.5 text-sm text-red-700 hover:bg-red-100" %>
+            <% if policy(sg).destroy? %>
+              <%= button_to "Delete",
+                    student_student_goal_path(@student, sg),
+                    method: :delete,
+                    data: { confirm: "Are you sure?" },
+                    class: "rounded-md bg-red-50 px-3 py-1.5 text-sm text-red-700 hover:bg-red-100" %>
+            <% end %>
           </div>
         </li>
       <% end %>
@@ -65,11 +66,13 @@
       <% @student.student_accommodations.includes(:accommodation).each do |sa| %>
         <li class="py-3 flex items-center justify-between">
           <%= link_to sa.accommodation.name, [@student, sa], class: "font-medium text-slate-800 hover:underline" %>
-          <%= button_to "Delete",
+          <% if policy(sa).destroy? %>
+            <%= button_to "Delete",
                 student_student_accommodation_path(@student, sa),
                 method: :delete,
                 data: { confirm: "Are you sure?" },
                 class: "rounded-md bg-red-50 px-3 py-1.5 text-sm text-red-700 hover:bg-red-100" %>
+          <% end %>
         </li>
       <% end %>
     </ul>
