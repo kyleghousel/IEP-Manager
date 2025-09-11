@@ -14,7 +14,7 @@ RSpec.describe ProgressEntry, type: :model do
          .only_integer
          .is_greater_than_or_equal_to(0)
          .is_less_than_or_equal_to(100)
-         .allow_nil }g
+         .allow_nil }
     it { should validate_numericality_of(:score_numeric).only_integer }
   end
 
