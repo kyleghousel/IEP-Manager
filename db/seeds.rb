@@ -128,7 +128,7 @@ sg5 = StudentGoal.find_or_create_by!(student: s3, goal: g_life) do |sg|
   sg.mastery_percent = 90
 end
 
-sg6 = StudentGoal.find_or_create_by!(student: s4, goal: g_math) do |sg|
+StudentGoal.find_or_create_by!(student: s4, goal: g_math) do |sg|
   sg.start_on = Date.today - 100
   sg.target_date = Date.today + 100
   sg.baseline = "Rubric 1"
