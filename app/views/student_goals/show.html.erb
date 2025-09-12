@@ -30,41 +30,43 @@
     </dl>
   </header>
 
-  <section class="bg-white p-6 rounded-lg shadow space-y-4">
-    <h3 class="text-xl font-semibold text-slate-800">Add Progress Entry</h3>
+  <% if policy(ProgressEntry).new?%>
+    <section class="bg-white p-6 rounded-lg shadow space-y-4">
+      <h3 class="text-xl font-semibold text-slate-800">Add Progress Entry</h3>
 
-    <%= form_with model: [@student, @student_goal, @progress_entry], data: { turbo: false },
+      <%= form_with model: [@student, @student_goal, @progress_entry], data: { turbo: false },
                   class: "space-y-4" do |f| %>
-      <%= render "shared/errors", resource: @progress_entry %>
+        <%= render "shared/errors", resource: @progress_entry %>
 
-      <div>
-        <%= f.label :note, "Note *", class: "block text-sm font-medium text-slate-700" %>
-        <%= f.text_area :note, rows: 4,
+        <div>
+          <%= f.label :note, "Note *", class: "block text-sm font-medium text-slate-700" %>
+          <%= f.text_area :note, rows: 4,
             class: "mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:ring-slate-500 focus:border-slate-500" %>
-      </div>
+        </div>
 
-      <div>
-        <%= f.label :recorded_on, "Recorded On *", class: "block text-sm font-medium text-slate-700" %>
-        <%= f.date_field :recorded_on,
+        <div>
+          <%= f.label :recorded_on, "Recorded On *", class: "block text-sm font-medium text-slate-700" %>
+          <%= f.date_field :recorded_on,
             class: "mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:ring-slate-500 focus:border-slate-500" %>
-      </div>
+        </div>
 
-      <div>
-        <%= f.label :evidence_url, "Evidence", class: "block text-sm font-medium text-slate-700" %>
-        <%= f.text_field :evidence_url,
+        <div>
+          <%= f.label :evidence_url, "Evidence", class: "block text-sm font-medium text-slate-700" %>
+          <%= f.text_field :evidence_url,
             class: "mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:ring-slate-500 focus:border-slate-500" %>
-      </div>
+        </div>
 
-      <div>
-        <%= f.label :score_numeric, "Score", class: "block text-sm font-medium text-slate-700" %>
-        <%= f.number_field :score_numeric,
+        <div>
+          <%= f.label :score_numeric, "Score", class: "block text-sm font-medium text-slate-700" %>
+          <%= f.number_field :score_numeric,
             class: "mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:ring-slate-500 focus:border-slate-500" %>
-      </div>
+        </div>
 
-      <%= f.submit "Add Entry",
+        <%= f.submit "Add Entry",
             class: "inline-flex items-center px-4 py-2 bg-slate-800 text-white rounded-md hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500" %>
-    <% end %>
-  </section>
+      <% end %>
+    </section>
+  <% end %>
 
   <section class="space-y-4">
     <h3 class="text-xl font-semibold text-slate-800">Progress History</h3>
