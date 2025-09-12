@@ -31,16 +31,16 @@ Requirements:
   - Note: Integration request spec included for at least GoalsController
 - [x] Use FactoryBot to build instances of your models in your tests
   - Note: All models have factories
-- [ ] Conforms to Nitro Ruby linting rules (running `rubocop` returns 0 offenses)
+- [x] Conforms to Nitro Ruby linting rules (running `rubocop` returns 0 offenses)
   - Note: Ensure final product satisfies
 - [x] Includes a `README.md` with an application description and installation guide
   - Note: README included, to be updated as stretch features added.
 
 Confirm:
-- [ ] The application is pretty DRY
+- [x] The application is pretty DRY
   - Note: Go through controllers and ensure DRYness with before_action/helper methods
 - [x] Limited logic in controllers
-- [ ] Views use helper methods if appropriate
+- [x] Views use helper methods if appropriate
   - Note: Look for opportunities where a helper would make sense
 - [x] Views use partials if appropriate
   - Note: Partials used for errors and forms where appropriate.

@@ -94,8 +94,17 @@
       <%= button_to "Delete #{@student.first_name}",
           student_path(@student),
           method: :delete,
-          data: { confirm: "Are you sure?" },
+          form: { data: { dlt_btn: true } },
           class: "inline-flex items-center rounded-lg bg-red-600 px-3 py-1.5 text-white text-sm hover:bg-red-700" %>
     <% end %>
   </section>
 </div>
+
+<script>
+  let dlt_btn = document.querySelector('[data-dlt-btn]')
+  dlt_btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    confirm("Are you sure?") ? dlt_btn.submit() : console.log('test')
+
+  })
+</script>
