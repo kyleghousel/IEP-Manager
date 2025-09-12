@@ -1,8 +1,8 @@
 class GoalsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_goal, only: %i[show edit update destroy]
 
   def show
-    @goal = Goal.find(params[:id])
     @goals = policy_scope(Goal)
     authorize @goal
   end
@@ -24,12 +24,10 @@ class GoalsController < ApplicationController
   end
 
   def edit
-    @goal = Goal.find(params[:id])
     authorize @goal
   end
 
   def update
-    @goal = Goal.find(params[:id])
     authorize @goal
 
     if @goal.update(goal_params)
@@ -40,7 +38,6 @@ class GoalsController < ApplicationController
   end
 
   def destroy
-    @goal = Goal.find(params[:id])
     authorize @goal
     @goal.destroy
     redirect_to students_path, notice: "Deleted"
@@ -50,5 +47,9 @@ private
 
   def goal_params
     params.require(:goal).permit(:name, :objectives, :category, :active)
+  end
+
+  def set_goal
+    @goal = Goal.find(params[:id])
   end
 end
