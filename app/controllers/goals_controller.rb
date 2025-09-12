@@ -1,10 +1,6 @@
 class GoalsController < ApplicationController
   before_action :authenticate_user!
 
-  def index
-    @goals = policy_scope(Goal)
-  end
-
   def show
     @goal = Goal.find(params[:id])
     @goals = policy_scope(Goal)
@@ -47,7 +43,7 @@ class GoalsController < ApplicationController
     @goal = Goal.find(params[:id])
     authorize @goal
     @goal.destroy
-    redirect_to goals_path, notice: "Deleted"
+    redirect_to students_path, notice: "Deleted"
   end
 
 private

@@ -4,10 +4,6 @@ class AccommodationsController < ApplicationController
   before_action :authorize_accommodation, only: %i[show edit update destroy]
   before_action :authorize_new_accommodation, only: %i[new create]
 
-  def index
-    @accommodations = policy_scope(Accommodation)
-  end
-
   def show; end
 
   def new
@@ -35,7 +31,7 @@ class AccommodationsController < ApplicationController
 
   def destroy
     @accommodation.destroy
-    redirect_to accommodations_path, notice: "Deleted"
+    redirect_to students_path, notice: "Deleted"
   end
 
 private

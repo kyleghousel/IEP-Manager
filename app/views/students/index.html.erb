@@ -24,7 +24,7 @@
   </div>
 <% end %>
 
-<% if policy(@goals).index? %>
+<% if policy(Goal).show? %>
   <h2 class="mt-10 text-xl font-semibold">Goal Templates</h2>
   <div class="mt-3 grid gap-3 md:grid-cols-2">
     <% if @goals.any? %>
@@ -53,7 +53,7 @@
   <% end %>
 <% end %>
 
-<% if policy(@accommodations).index? %>
+<% if policy(Accommodation).show? %>
   <h2 class="mt-10 text-xl font-semibold">Accommodation Templates</h2>
   <div class="mt-3 grid gap-3 md:grid-cols-2">
     <% if @accommodations.any? %>

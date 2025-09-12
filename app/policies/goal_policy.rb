@@ -1,8 +1,4 @@
 class GoalPolicy < ApplicationPolicy
-  def index?
-    user.admin? || user.teacher?
-  end
-
   def show?
     user.admin? || user.teacher? || user.parent?
   end
