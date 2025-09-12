@@ -1,5 +1,6 @@
 class StudentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :load_parents, only: %i[new create edit update]
 
   def index
     @students = policy_scope(Student)
@@ -58,5 +59,9 @@ private
 
   def student_params
     params.require(:student).permit(:first_name, :last_name, :dob, :diagnosis, :grade_level, :parent_id)
+  end
+
+  def load_parents
+    @users = User.where(role: "parent").order(:last_name, :first_name)
   end
 end
