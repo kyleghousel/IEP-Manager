@@ -6,6 +6,15 @@ RSpec.describe StudentGoal, type: :model do
     it { should have_many(:progress_entries).dependent(:destroy) }
   end
 
+  describe "validations" do
+    it { should validate_presence_of(:start_on) }
+    it { should validate_presence_of(:target_date) }
+    it { should validate_presence_of(:baseline) }
+    it { should validate_presence_of(:target_value) }
+    it { should validate_presence_of(:status) }
+    it { should validate_presence_of(:mastery_percent) }
+  end
+
   describe "database columns" do
     it { is_expected.to have_db_column(:start_on).of_type(:date) }
     it { is_expected.to have_db_column(:target_date).of_type(:date) }

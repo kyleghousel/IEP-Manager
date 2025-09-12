@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 2025_09_11_233610) do
+ActiveRecord::Schema[8.0].define(version: 2025_09_12_124314) do
   create_table "accommodations", force: :cascade do |t|
     t.string "name", null: false
     t.text "details"
@@ -57,12 +57,12 @@ ActiveRecord::Schema[8.0].define(version: 2025_09_11_233610) do
   create_table "student_goals", force: :cascade do |t|
     t.integer "student_id", null: false
     t.integer "goal_id", null: false
-    t.date "start_on"
-    t.date "target_date"
-    t.string "baseline"
-    t.string "target_value"
-    t.string "status"
-    t.integer "mastery_percent"
+    t.date "start_on", null: false
+    t.date "target_date", null: false
+    t.string "baseline", null: false
+    t.string "target_value", null: false
+    t.string "status", null: false
+    t.integer "mastery_percent", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["goal_id"], name: "index_student_goals_on_goal_id"
