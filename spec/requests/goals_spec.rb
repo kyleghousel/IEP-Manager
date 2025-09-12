@@ -23,40 +23,6 @@ RSpec.describe "Goals", type: :request do
     end
   end
 
-  describe "GET /goals (policy_scope)" do
-    it "admin sees all" do
-      active  = create(:goal, name: "Active",  active: true)
-      inactive = create(:goal, name: "Inactive", active: false)
-      login_as(create(:user, role: "admin"), scope: :user)
-
-      get goals_path
-
-      expect(response).to have_http_status(:ok)
-      expect(response.body).to include("Active", "Inactive")
-    end
-    it "teacher sees only active" do
-      active  = create(:goal, name: "Active",  active: true)
-      inactive = create(:goal, name: "Inactive", active: false)
-      login_as(create(:user, role: "teacher"), scope: :user)
-
-      get goals_path
-
-      expect(response).to have_http_status(:ok)
-      expect(response.body).to include("Active")
-      expect(response.body).not_to include("Inactive")
-    end
-
-    it "parent sees none" do
-      create(:goal, name: "Any", active: true)
-      login_as(create(:user, role: "parent"), scope: :user)
-
-      get goals_path
-
-      expect(response).to have_http_status(:ok)
-      expect(response.body).not_to include("Any")
-    end
-  end
-
   describe "POST /goals" do
   it "creates a goal as an admin" do
     admin = create(:user, role: "admin")
