@@ -5,6 +5,11 @@ RSpec.describe Student, type: :model do
     it { should have_many(:goals).through(:student_goals) }
     it { should have_many(:student_accommodations).dependent(:destroy) }
     it { should have_many(:accommodations).through(:student_accommodations) }
+    it do
+      is_expected.to belong_to(:parent)
+        .class_name("User")
+        .optional
+    end
   end
   describe "validations" do
     it { should validate_presence_of(:first_name) }

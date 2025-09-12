@@ -3,6 +3,10 @@ require "rails_helper"
 RSpec.describe User, type: :model do
   describe "associations" do
     it { should have_many(:progress_entries).dependent(:destroy) }
+    it do
+      is_expected.to have_many(:children)
+        .class_name("Student")
+    end
   end
 
   describe "validations" do
