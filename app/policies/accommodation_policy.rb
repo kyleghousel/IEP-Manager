@@ -21,9 +21,7 @@ class AccommodationPolicy < ApplicationPolicy
 
   class Scope < ApplicationPolicy::Scope
     def resolve
-      if user.admin?
-        scope.all
-      elsif user.teacher?
+      if user.admin? || user.teacher?
         scope.all
       elsif user.parent?
         scope.none
