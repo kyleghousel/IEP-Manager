@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "students#index"
 
-  resources :goals, :accommodations
+  resources :goals, :accommodations, except: [:index]
   resources :students do
     resources :student_goals, only: [:new, :create, :show, :destroy] do
       resources :progress_entries, only: [:create, :destroy]
