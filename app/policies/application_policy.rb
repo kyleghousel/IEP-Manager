@@ -46,7 +46,7 @@ class ApplicationPolicy
       raise NoMethodError, "You must define #resolve in #{self.class}"
     end
 
-    private
+  private
 
     attr_reader :user, :scope
   end

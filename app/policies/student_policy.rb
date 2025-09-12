@@ -24,7 +24,7 @@ class StudentPolicy < ApplicationPolicy
       if user.admin? || user.teacher?
         scope.all
       elsif user.parent?
-        scope.select { |student| student.first_name == "Michael"}
+        scope.where(parent_id: user.id)
       else
         scope.none
       end

@@ -54,8 +54,8 @@ group :development, :test do
 
   gem "factory_bot_rails"
 
-  gem "pry-rails"
   gem "pry-byebug"
+  gem "pry-rails"
 end
 
 group :development do
@@ -67,7 +67,7 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-  gem 'shoulda-matchers', '~> 6.0'
+  gem "shoulda-matchers", "~> 6.0"
 end
 
 gem "devise", "~> 4.9"

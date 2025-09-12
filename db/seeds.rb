@@ -52,6 +52,9 @@ s4 = Student.find_or_create_by!(first_name: "Nyles", last_name: "Johnson") do |s
   s.grade_level = "K"
 end
 
+s1.update!(parent: parent)
+s2.update!(parent: parent)
+
 puts "Seeding goals..."
 g_read = Goal.find_or_create_by!(name: "Reading Fluency") do |g|
   g.objectives = "Read 120 wpm with ≤3 errors."
@@ -125,7 +128,7 @@ sg5 = StudentGoal.find_or_create_by!(student: s3, goal: g_life) do |sg|
   sg.mastery_percent = 90
 end
 
-sg6 = StudentGoal.find_or_create_by!(student: s4, goal: g_math) do |sg|
+StudentGoal.find_or_create_by!(student: s4, goal: g_math) do |sg|
   sg.start_on = Date.today - 100
   sg.target_date = Date.today + 100
   sg.baseline = "Rubric 1"

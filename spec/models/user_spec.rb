@@ -3,6 +3,10 @@ require "rails_helper"
 RSpec.describe User, type: :model do
   describe "associations" do
     it { should have_many(:progress_entries).dependent(:destroy) }
+    it do
+      is_expected.to have_many(:children)
+        .class_name("Student")
+    end
   end
 
   describe "validations" do
@@ -47,6 +51,13 @@ RSpec.describe User, type: :model do
     context "otherwise" do
       let(:user) { build(:user, role: "teacher") }
       it { expect(user.admin?).to be false }
+    end
+  end
+
+  describe "#full_name" do
+    it "returns the user's full name" do
+      user = create(:user)
+      expect(user.full_name).to eq("#{user.first_name} #{user.last_name}")
     end
   end
 

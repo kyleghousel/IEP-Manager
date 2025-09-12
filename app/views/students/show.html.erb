@@ -79,11 +79,10 @@
   </section>
 
   <section class="flex flex-wrap gap-3">
-    <% if policy(@students).index? %>
-      <%= link_to "Back",
+
+    <%= link_to "Back",
               students_path,
               class: "inline-block rounded-md bg-slate-200 px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-300" %>
-    <% end %>
 
     <% if policy(@students).edit? %>
       <%= link_to "Edit #{@student.first_name}",

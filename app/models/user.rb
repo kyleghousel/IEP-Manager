@@ -1,13 +1,15 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_many :progress_entries, dependent: :destroy
 
+  has_many :children, class_name: "Student", foreign_key: :parent_id
+
   ROLES = %w[parent teacher admin].freeze
 
   validates :role, presence: true, inclusion: { in: ROLES }
+
+  scope :parents_only, -> { where(role: "parent") }
 
   def parent?
     role == "parent"
@@ -19,6 +21,10 @@ class User < ApplicationRecord
 
   def admin?
     role == "admin"
+  end
+
+  def full_name
+    "#{first_name} #{last_name}".titleize
   end
 
 private

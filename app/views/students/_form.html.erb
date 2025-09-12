@@ -33,6 +33,12 @@
   </div>
 
   <div>
+    <%= f.collection_select :parent_id, @users, :id, :full_name,
+      { prompt: "Select a parent" },
+      class: "mt-1 block w-full rounded-md border-slate-300 shadow-sm focus:border-slate-500 focus:ring-slate-500" %>
+  </div>
+
+  <div>
     <%= f.submit "Save Student",
           class: "inline-flex items-center rounded-md bg-slate-800 px-4 py-2 text-white hover:bg-slate-700 focus:outline-none focus:ring-2 focus:ring-slate-500" %>
   </div>

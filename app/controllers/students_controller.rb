@@ -15,6 +15,7 @@ class StudentsController < ApplicationController
 
   def new
     @student = Student.new
+    @users = User.parents_only
     authorize @student
   end
 
@@ -31,6 +32,7 @@ class StudentsController < ApplicationController
 
   def edit
     @student = Student.find(params[:id])
+    @users = User.parents_only
     authorize @student
   end
 
@@ -55,6 +57,6 @@ class StudentsController < ApplicationController
 private
 
   def student_params
-    params.require(:student).permit(:first_name, :last_name, :dob, :diagnosis, :grade_level)
+    params.require(:student).permit(:first_name, :last_name, :dob, :diagnosis, :grade_level, :parent_id)
   end
 end
