@@ -74,3 +74,4 @@ gem "devise", "~> 4.9"
 gem "pundit"
 
 gem "tailwindcss-rails", "~> 4.3"
+gem "view_component"
