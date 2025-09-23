@@ -1,7 +1,9 @@
 # frozen_string_literal: true
 
 class GoalFormComponent < ViewComponent::Base
-  def initialize(title:)
-    @title = title
+  attr_reader :goal
+
+  def initialize(goal:)
+    @goal = goal
   end
 end
