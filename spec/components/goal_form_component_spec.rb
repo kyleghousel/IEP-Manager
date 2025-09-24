@@ -3,13 +3,21 @@
 require "rails_helper"
 
 RSpec.describe GoalFormComponent, type: :component do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it "renders the form fields" do
+    goal  = create(:goal, active: true)
 
-  # it "renders something useful" do
-  #   expect(
-  #     render_inline(described_class.new(attr: "value")) { "Hello, components!" }.css("p").to_html
-  #   ).to include(
-  #     "Hello, components!"
-  #   )
-  # end
+    render_inline(described_class.new(goal: goal))
+
+    expect(page).to have_selector("form")
+    expect(page).to have_field("Name")
+    expect(page).to have_field("Objectives")
+  end
+
+  it "shows Update when persisted" do
+    goal = create(:goal, active: true)
+
+    render_inline(described_class.new(goal: goal))
+
+    expect(page).to have_button("Update Goal")
+  end
 end
