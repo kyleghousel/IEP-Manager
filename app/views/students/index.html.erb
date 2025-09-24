@@ -3,11 +3,9 @@
 <div class="grid gap-4 md:grid-cols-2">
   <% if @students.any? %>
     <% @students.each do |student| %>
-      <div class="rounded-md border border-slate-200 bg-white p-4 shadow-sm hover:shadow-md transition">
-        <%= link_to "#{student.first_name} #{student.last_name}",
-                    student,
-                    class: "text-lg font-medium text-slate-800 hover:text-blue-600" %>
-      </div>
+      <%= render CardComponent.new(href: student_path(student)) do |c| %>
+        <%= "#{student.first_name} #{student.last_name}" %>
+      <% end %>
     <% end %>
   <% else %>
     <div class="rounded-md border border-dashed border-slate-300 bg-white p-6 text-slate-500">
