@@ -1,13 +1,6 @@
-<% if @href %>
-  <a href="<%= @href %>" class="<%= classes %>">
-    <%= header %>
-    <%= content %>
-    <%= footer %>
-  </a>
-<% else %>
-  <div class="<%= classes %>">
-    <%= header %>
-    <%= content %>
-    <%= footer %>
-  </div>
+<% tag = @href ? :a : :div %>
+<%= content_tag tag, href: @href, class: classes do %>
+  <%= header %>
+  <%= content %>
+  <%= footer %>
 <% end %>
