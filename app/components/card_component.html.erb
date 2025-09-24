@@ -1,0 +1,13 @@
+<% if @href %>
+  <a href="<%= @href %>" class="<%= classes %>">
+    <%= header %>
+    <%= content %>
+    <%= footer %>
+  </a>
+<% else %>
+  <div class="<%= classes %>">
+    <%= header %>
+    <%= content %>
+    <%= footer %>
+  </div>
+<% end %>
