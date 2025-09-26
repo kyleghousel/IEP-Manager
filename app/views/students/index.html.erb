@@ -26,7 +26,7 @@
 
 <% if policy(Goal).show? %>
   <div data-controller="accordion"
-     class="rounded-md border border-slate-200 bg-white w-full">
+     class="rounded-md border border-slate-200 bg-white w-full p-4">
     <button
       data-action="click->accordion#toggle"
       class="flex items-center gap-2 w-full px-2 py-1 m-1 bg-slate-200 hover:bg-slate-300 leading-none"
@@ -69,34 +69,51 @@
       <% end %>
     </div>
   </div>
-  <h2 class="mt-10 text-xl font-semibold"></h2>
 
 <% end %>
 
 <% if policy(Accommodation).new? %>
-  <h2 class="mt-10 text-xl font-semibold">Accommodation Templates</h2>
-  <div class="mt-3 grid gap-3 md:grid-cols-2">
-    <% if @accommodations.any? %>
-      <% @accommodations.each do |a| %>
-        <div class="rounded-md border border-slate-200 bg-white p-4 shadow-sm hover:shadow-md transition">
-          <div>
-            <%= link_to a.name, a, class: "font-medium text-slate-800 hover:text-blue-600" %>
-            <span class="ml-2 text-xs rounded bg-slate-100 px-2 py-0.5 text-slate-600"><%= a.accommodation_type.humanize %></span>
-          </div>
-        </div>
-      <% end %>
-    <% else %>
-      <div class="rounded-md border border-dashed border-slate-300 bg-white p-6 text-slate-500">
-        No accommodation templates yet.
-      </div>
-    <% end %>
-  </div>
+  <div data-controller="accordion"
+     class="rounded-md border border-slate-200 bg-white w-full p-4">
+    <button
+      data-action="click->accordion#toggle"
+      class="flex items-center gap-2 w-full px-2 py-1 m-1 bg-slate-200 hover:bg-slate-300 leading-none"
+      style="cursor:pointer;">
+      <svg data-accordion-target="icon"
+       viewBox="0 0 24 24" fill="none" stroke="currentColor"
+       class="w-4 h-4 shrink-0 grow-0 basis-4 ml-2 transition-transform duration-200 origin-center"
+       style="width:1.1rem;height:1.1rem;margin-left:1rem;">
+        <path d="M19.5 8.25l-7.5 7.5-7.5-7.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
 
-  <% if policy(Accommodation).new? %>
-    <div class="mt-3">
-      <%= link_to "Add Accommodation Template",
+      <span class="flex-1 min-w-0 whitespace-nowrap text-xl font-semibold">Accommodation Templates</span>
+    </button>
+
+    <div data-accordion-target="panel" hidden class="p-4 border-t">
+
+      <div class="mt-3 grid gap-3 md:grid-cols-2">
+        <% if @accommodations.any? %>
+          <% @accommodations.each do |a| %>
+            <div class="rounded-md border border-slate-200 bg-white p-4 shadow-sm hover:shadow-md transition">
+              <div>
+                <%= link_to a.name, a, class: "font-medium text-slate-800 hover:text-blue-600" %>
+                <span class="ml-2 text-xs rounded bg-slate-100 px-2 py-0.5 text-slate-600"><%= a.accommodation_type.humanize %></span>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+          <div class="rounded-md border border-dashed border-slate-300 bg-white p-6 text-slate-500">
+            No accommodation templates yet.
+          </div>
+        <% end %>
+      </div>
+
+      <% if policy(Accommodation).new? %>
+        <div class="mt-4">
+          <%= link_to "Add Accommodation Template",
                   new_accommodation_path,
                   class: "inline-flex items-center rounded-md bg-slate-800 px-4 py-2 text-white text-sm font-semibold hover:bg-slate-700" %>
+        </div>
+      <% end %>
     </div>
   <% end %>
-<% end %>
