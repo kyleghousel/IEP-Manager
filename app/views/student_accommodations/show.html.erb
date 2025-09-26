@@ -34,7 +34,13 @@
     <%= button_to "Remove Accommodation",
           student_student_accommodation_path(@student, @student_accommodation),
           method: :delete,
-          data: { confirm: "Are you sure?" },
+          form: {
+                      data: {
+                        controller: "confirm",
+                        action: "submit->confirm#confirm",
+                        confirm_message_value: "Are you sure you want to delete this accommodation?"
+                      }
+                    },
           class: "inline-flex items-center rounded-md bg-red-600 px-4 py-2 text-white text-sm font-medium hover:bg-red-700" %>
   <% end %>
 
